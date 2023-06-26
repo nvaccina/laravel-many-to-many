@@ -16,21 +16,36 @@
                     <th scope="col">#ID</th>
                     <th scope="col">Titolo</th>
                     <th scope="col">Tipo</th>
+                    <th scope="col">Tecnologie</th>
                     <th scope="col">Data</th>
                     <th scope="col">Azioni</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($works as $work)
-                    <tr>
-                        <td>{{$work->id}}</td>
-                        <td class="w-50">{{$work->title}}</td>
+                    <tr class=" bg-white border border-bottom-1">
+                        <td class="border border-0">{{$work->id}}</td>
+                        <td class="w-25 border border-0">{{$work->title}}</td>
                         @php
                             $date = date_create($work->creation_date)
                         @endphp
-                        <td>{{$work->type?->name}}</td>
-                        <td>{{date_format($date, 'd-m-Y')}}</td>
-                        <td>
+                        <td class="border border-0">
+                            <span class="badge text-bg-primary border border-0">{{$work->type?->name}}</span>
+                        </td>
+
+                        @forelse ($work->technologies as $technology)
+                            <td class="d-flex border border-0 mpt-2">
+                                <span class="badge text-bg-secondary">{{ $technology->name}}</span>
+                            </td>
+                        @empty
+                            <td class="border border-0">
+                                <span>Nessuna tecnologia</span>
+                            </td>
+                        @endforelse
+
+
+                        <td class="border border-0">{{date_format($date, 'd-m-Y')}}</td>
+                        <td class="border border-0">
                             <a class="btn btn-primary" href="{{route('admin.works.show', $work)}}">
                                 <i class="fa-solid fa-info p-1"></i>
                             </a>

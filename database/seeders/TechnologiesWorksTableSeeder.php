@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Technology;
 use App\Models\Work;
 
-class WorksTechnologiesTableSeeder extends Seeder
+class TechnologiesWorksTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,9 +18,9 @@ class WorksTechnologiesTableSeeder extends Seeder
     {
         for($i = 0; $i < 50; $i++){
 
-            $work = Work::inRandomOrder()->first;
+            $work = Work::inRandomOrder()->first();
 
-            $technology_id = Technology::inRandomOrder()->first->id;
+            $technology_id = Technology::inRandomOrder()->first()->id;
 
             $work->technologies()->attach($technology_id);
         }

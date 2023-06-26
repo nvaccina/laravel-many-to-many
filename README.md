@@ -16,4 +16,5 @@ Bonus 2:<br>
 aggiungere le operazioni CRUD per il model Technology, in modo da gestire le tecnologie utilizzate nei progetti direttamente dal pannello di amministrazione.<br>
 
 # Steps
+- Creo la Technology Model, Migration & Seeder;
 

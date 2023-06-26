@@ -55,10 +55,37 @@
                     <option value="" selected>Seleziona il tipo di lavoro</option>
 
                     @foreach ($types as $type )
-                        <option value="{{$type->id}}" @if($type->id == old('type_id', $work->type?->id)) selected @endif>{{$type->name}}</option>
+                        <option value="{{$type->id}}"
+                            @if($type->id == old('type_id', $work?->type?->id)) selected
+                            @endif>{{$type->name}}
+                        </option>
                     @endforeach
 
                 </select>
+            </div>
+
+            <div class="mb-3 w-25">
+                <label for="technology" class="form-label">Tecnologie</label>
+
+                @foreach ($technologies as $technology)
+
+                    <div class="form-check">
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value="{{$technology->id}}"
+                            id="technology{{$loop->iteration}}"
+                            name="technologies[]"
+                            @if (in_array($technology->id, old('technologies', [])))
+                                checked
+                            @endif
+                        >
+                        <label class="form-check-label" for="technology{{$loop->iteration}}">{{$technology->name}}</label>
+                    </div>
+
+                @endforeach
+
+
             </div>
 
             <div class="mb-3">

@@ -63,6 +63,30 @@
                 </select>
             </div>
 
+            <div class="mb-3 w-25">
+                <label for="technology" class="form-label">Tecnologie: </label>
+
+                @foreach ($technologies as $technology)
+
+                    <div class="form-check">
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value="{{$technology->id}}"
+                            id="technology{{$loop->iteration}}"
+                            name="technologies[]"
+                            @if (!$errors->any() && $work?->technologies->contains($technology))
+                                checked
+                            @elseif ($errors->any() && in_array($technology->id, old('technologies', [])))
+                                checked
+                            @endif
+                        >
+                        <label class="form-check-label" for="technology{{$loop->iteration}}">{{$technology->name}}</label>
+                    </div>
+                @endforeach
+
+            </div>
+
             <div class="mb-3">
                 <label for="text" class="form-label">Testo (*)</label>
                 <textarea

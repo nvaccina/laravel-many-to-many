@@ -7,6 +7,7 @@ use App\Http\Requests\WorkRequest;
 use Illuminate\Http\Request;
 use App\Models\Work;
 use App\Models\Type;
+use App\Models\Technology;
 use Illuminate\Support\Facades\Storage;
 
 use function PHPSTORM_META\type;
@@ -33,8 +34,9 @@ class WorkController extends Controller
     public function create(Work $work)
     {
         $types = Type::all();
+        $technologies = Technology::all();
 
-        return view('admin.works.create', compact('work', 'types'));
+        return view('admin.works.create', compact('work', 'types', 'technologies'));
     }
 
     /**
@@ -58,6 +60,10 @@ class WorkController extends Controller
         $new_work = new Work;
         $new_work->fill($form_data);
         $new_work->save();
+
+        if(array_key_exists('technologies', $form_data)){
+            $new_work->technologies()->attach($form_data['technologies']);
+        }
 
         return redirect()->route('admin.works.show', $new_work);
     }
@@ -84,7 +90,8 @@ class WorkController extends Controller
     public function edit(Work $work)
     {
         $types = Type::all();
-        return view('admin.works.edit', compact('work', 'types'));
+        $technologies = Technology::all();
+        return view('admin.works.edit', compact('work', 'types', 'technologies'));
     }
 
     /**
@@ -118,6 +125,12 @@ class WorkController extends Controller
         }
 
         $work->update($form_data);
+
+        if(array_key_exists('technologies', $form_data)){
+            $work->technologies()->sync($form_data['technologies']);
+        }else{
+            $work->technologies()->detach();
+        }
 
         return view('admin.works.show', compact('work', 'date_formatted'));
     }

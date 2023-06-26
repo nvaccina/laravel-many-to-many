@@ -10,7 +10,23 @@
         </div>
         <p>{{$work->image_original_name}}</p>
 
-        <p class="pt-2">Tipo: {{$work->type?->name}}</p>
+        <div>
+            <span>Tipo:</span>
+            <span class="pt-2 badge text-bg-primary">{{$work->type?->name}}</span>
+
+        </div>
+
+        <div class="pt-2">
+            <span>Tecnologie: </span>
+            @forelse ($work->technologies as $technology)
+                <span class="badge text-bg-secondary">{{ $technology->name}}</span>
+            @empty
+                <span>nessuna tecnologia presente</span>
+            @endforelse
+
+        </div>
+
+
 
         <p class="pt-2">{!!$work->text!!}</p>
         <p>{{$date_formatted}}</p>

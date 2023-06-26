@@ -17,5 +17,8 @@ aggiungere le operazioni CRUD per il model Technology, in modo da gestire le tec
 
 # Steps
 - Creare la Technology Model, Migration & Seeder;
-- Creare la migration e il seeder per la pivot work_technology
+- Creare la migration e il seeder per la pivot work_technology;
+- Aggiungere ai model Technology e Project i metodi per la relazione Many to Many;
+- Visualizzare in pagina le tecnologie utilizzate per ogni lavoro;
+- Aggiungere opzione di settaggio delle tecnologie alla creazione di un nuovo lavoro o alla modifica di uno già esistente;
 

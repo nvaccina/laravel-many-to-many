@@ -1,4 +1,4 @@
-# Laravel Boolfolio - One to many
+# Laravel Boolfolio - Many to Many
 
 Continuiamo a lavorare sul codice dei giorni scorsi, ma in una nuova repo e aggiungiamo una nuova entità **Technology**. <br>
 Questa entità rappresenta le tecnologie utilizzate ed è in relazione **many to many** con i progetti.<br>
